@@ -6,33 +6,38 @@
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:34:37 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/06 17:07:34 by jle-doua         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:43:19 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-// void	display_map(t_maps map)
-// {
-// 	int x;
-// 	int y;
+void	display_map(t_game *game)
+{
+	int x;
+	int y;
 
-// 	y = 0;
-// 	while (map.map[y])
-// 	{
-// 		x = 0;
-// 		while (map.map[y][x])
-// 		{
-// 			if (map.map[y][x] == '1')
-// 				display_1(x, y, map);
-// 			else if (map.map[y][x] == '0')
-// 				put_floor(x, y, map);
-// 			else if (map.map[y][x] == 'E')
-// 				display_exit(map);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// 	display_collectible(&map);
-// 	display_player(&map);
-// }
+	y = 0;
+	while (game->map[y])
+	{
+		x = 0;
+		while (game->map[y][x])
+		{
+			if (game->map[y][x] == '1')
+				mlx_put_image_to_window(game->mlx, game->win, game->asset.w, x
+					* game->h, y * game->h);
+			else if (game->map[y][x] == 'C')
+				mlx_put_image_to_window(game->mlx, game->win, game->asset.c, x
+					* game->h, y * game->h);
+			else if (game->map[y][x] == 'P')
+				mlx_put_image_to_window(game->mlx, game->win,
+					game->asset.player[0], x * game->h, y * game->h);
+			else if (game->map[y][x] == '0')
+				mlx_put_image_to_window(game->mlx, game->win,
+					game->asset.f, x * game->h, y * game->h);
+
+			x++;
+		}
+		y++;
+	}
+}

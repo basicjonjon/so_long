@@ -4,7 +4,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror 
 RM = rm -f
 
-FILES = main map game error verif_map display_info player
+FILES = main map game error verif_map display_info player utils asset display 
 
 
 #tout les repertoire 
