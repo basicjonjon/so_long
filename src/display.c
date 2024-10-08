@@ -6,7 +6,7 @@
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:34:37 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/07 15:43:19 by jle-doua         ###   ########.fr       */
+/*   Updated: 2024/10/08 17:12:47 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void	display_map(t_game *game)
 					* game->h, y * game->h);
 			else if (game->map[y][x] == 'P')
 				mlx_put_image_to_window(game->mlx, game->win,
-					game->asset.player[0], x * game->h, y * game->h);
+					game->player.asset[0][0][0], x * game->h, y * game->h);
 			else if (game->map[y][x] == '0')
-				mlx_put_image_to_window(game->mlx, game->win,
-					game->asset.f, x * game->h, y * game->h);
+				mlx_put_image_to_window(game->mlx, game->win, game->asset.f, x
+					* game->h, y * game->h);
 
 			x++;
 		}

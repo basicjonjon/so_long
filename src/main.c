@@ -6,7 +6,7 @@
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:24:14 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/07 18:17:08 by jle-doua         ###   ########.fr       */
+/*   Updated: 2024/10/08 17:04:14 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,27 @@
 
 int	get_hook(int keycode, t_game *game)
 {
-	game->keypress = keycode;
+	if (keycode == 100 || keycode == 65363 || keycode == 97 || keycode == 65361
+		|| keycode == 119 || keycode == 65362 || keycode == 115
+		|| keycode == 65364)
+	{
+		game->keypress = keycode;
+	}
 	return (0);
 }
 
 int	move_loop(t_game *game)
 {
 	static int	counter = 0;
+	int			speed_limit;
 
-	int speed_limit = 22000; // Ajuste cette valeur pour modifier la vitesse
+	speed_limit = 22000;
 	if (counter < speed_limit)
 	{
 		counter++;
-		return (0); // Attendre avant de déplacer le joueur
+		return (0);
 	}
-	counter = 0; // Réinitialiser le compteur après avoir atteint la limite
-	// Déplacement selon la touche pressée
+	counter = 0;
 	if (game->keypress == 100 || game->keypress == 65363)
 		move_rigth(game);
 	if (game->keypress == 97 || game->keypress == 65361)

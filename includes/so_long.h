@@ -6,7 +6,7 @@
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:24:50 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/07 17:55:57 by jle-doua         ###   ########.fr       */
+/*   Updated: 2024/10/08 17:52:52 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ typedef struct s_asset
 	void		*w;
 	void		*f;
 	void		*f2;
-	void		*player[2];
 	void		*c;
 }				t_asset;
 
@@ -37,6 +36,9 @@ typedef struct s_player
 {
 	int			plyr_x;
 	int			plyr_y;
+	int			position_x;
+	int			position_y;
+	void		*asset[2][3][2];
 }				t_player;
 
 typedef struct s_game
@@ -72,17 +74,17 @@ int				verif_finishable(t_game *game, int x, int y);
 char			**ft_bidimentionnal_char_cpy(char **tab);
 
 void			get_player_position(t_game *game);
-
-int				ft_tablen(char **tab);
-char			**ft_bidimentionnal_char_cpy(char **tab);
-
-void			init_asset(t_game *game);
-
-void			display_map(t_game *game);
-
-int				key_hook(int keycode, t_game *game);
 int				move_rigth(t_game *game);
 int				move_left(t_game *game);
 int				move_bottom(t_game *game);
 int				move_top(t_game *game);
+
+int				ft_tablen(char **tab);
+char			**ft_bidimentionnal_char_cpy(char **tab);
+
+void			init_asset_map(t_game *game);
+void			init_asset_player(t_game *game);
+
+void			display_map(t_game *game);
+
 #endif
