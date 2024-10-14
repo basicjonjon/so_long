@@ -6,7 +6,7 @@
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:45:12 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/08 17:52:30 by jle-doua         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:00:53 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	init_asset_map(t_game *game)
 	game->asset.f2 = mlx_xpm_file_to_image(game->mlx, "./assets/floor_nc.xpm",
 			&game->h, &game->h);
 	game->asset.c = mlx_xpm_file_to_image(game->mlx, "./assets/collect.xpm",
+			&game->h, &game->h);
+	game->asset.e = mlx_xpm_file_to_image(game->mlx, "./assets/exit.xpm",
 			&game->h, &game->h);
 }
 
@@ -38,7 +40,6 @@ void	init_asset_player(t_game *game)
 			"./assets/frontbl.xpm", &game->h, &game->h);
 	game->player.asset[1][2][0] = mlx_xpm_file_to_image(game->mlx,
 			"./assets/fronttl.xpm", &game->h, &game->h);
-
 	game->player.asset[0][0][1] = mlx_xpm_file_to_image(game->mlx,
 			"./assets/front1r.xpm", &game->h, &game->h);
 	game->player.asset[0][1][1] = mlx_xpm_file_to_image(game->mlx,

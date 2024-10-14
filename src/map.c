@@ -6,7 +6,7 @@
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 12:42:27 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/04 17:00:43 by jle-doua         ###   ########.fr       */
+/*   Updated: 2024/10/11 14:28:38 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	get_map(t_game *game, char *file)
 		i++;
 		game->map[i] = get_next_line(fd);
 	}
-	game->map[i] = NULL;
+	close(fd);
+	game->map[i] = get_next_line(fd);
 	return (0);
 }
-

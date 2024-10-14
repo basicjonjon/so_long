@@ -4,7 +4,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror 
 RM = rm -f
 
-FILES = main map game error verif_map display_info player utils asset display 
+FILES = main map game error verif_map display_info player utils asset display move exit collectible end
 
 
 #tout les repertoire 
@@ -57,7 +57,7 @@ fclean: clean
 
 re: fclean all
 	@echo "\n$(BLUE)================= [ START ] =================$(NC)\n"
-	@./$(NAME) "./maps/maptest.ber"
+	@./$(NAME) "./maps/map1.ber"
 	@echo "\n$(BLUE)================= [  END  ] =================$(NC)\n"
 
 .PHONY: all clean fclean re

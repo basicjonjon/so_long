@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_bidimentionnal.c                           :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/20 15:16:46 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/09 14:54:55 by jle-doua         ###   ########.fr       */
+/*   Created: 2024/10/11 13:15:08 by jle-doua          #+#    #+#             */
+/*   Updated: 2024/10/14 13:04:45 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../includes/so_long.h"
 
-void	ft_free_bidimentionnal(void **tab)
+void	get_exit(t_game *game)
 {
-	int	i;
+	int	x;
+	int	y;
 
-	i = 0;
-	while (tab[i])
-		free(tab[i++]);
-	free(tab);
+	y = 0;
+	while (y <= game->map_y)
+	{
+		x = 0;
+		while (x <= game->map_x)
+		{
+			if (game->map[y][x] == 'E')
+			{
+				game->exit.x = x;
+				game->exit.y = y;
+				printf("exit x %i, exit y %i\n", x, y);
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
 }

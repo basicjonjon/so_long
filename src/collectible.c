@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_bidimentionnal.c                           :+:      :+:    :+:   */
+/*   collectible.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/20 15:16:46 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/09 14:54:55 by jle-doua         ###   ########.fr       */
+/*   Created: 2024/10/11 13:34:14 by jle-doua          #+#    #+#             */
+/*   Updated: 2024/10/14 13:05:32 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../includes/so_long.h"
 
-void	ft_free_bidimentionnal(void **tab)
+void	get_nb_collectible(t_game *game)
 {
-	int	i;
+	int	x;
+	int	y;
 
-	i = 0;
-	while (tab[i])
-		free(tab[i++]);
-	free(tab);
+	y = 0;
+	while (y < game->map_y)
+	{
+		x = 0;
+		while (x < game->map_x)
+		{
+			if (game->map[y][x] == 'C')
+			{
+				game->nb_collectible++;
+			}
+			x++;
+		}
+		y++;
+	}
 }

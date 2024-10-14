@@ -6,7 +6,7 @@
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:24:50 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/08 17:52:52 by jle-doua         ###   ########.fr       */
+/*   Updated: 2024/10/14 13:14:44 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_asset
 	void		*f;
 	void		*f2;
 	void		*c;
+	void		*e;
 }				t_asset;
 
 typedef struct s_verif
@@ -32,12 +33,18 @@ typedef struct s_verif
 
 }				t_verif;
 
+typedef struct s_exit
+{
+	int			x;
+	int			y;
+}				t_exit;
+
 typedef struct s_player
 {
-	int			plyr_x;
-	int			plyr_y;
-	int			position_x;
-	int			position_y;
+	int			x;
+	int			y;
+	int			rot_x;
+	int			rot_y;
 	void		*asset[2][3][2];
 }				t_player;
 
@@ -57,6 +64,7 @@ typedef struct s_game
 	t_player	player;
 	t_verif		verif;
 	t_asset		asset;
+	t_exit		exit;
 }				t_game;
 
 int				init_game(t_game *game, char *file);
@@ -71,7 +79,6 @@ int				verif_border(t_game game);
 int				verif_count_p_e_c(t_game *game);
 int				verif_shape(t_game game);
 int				verif_finishable(t_game *game, int x, int y);
-char			**ft_bidimentionnal_char_cpy(char **tab);
 
 void			get_player_position(t_game *game);
 int				move_rigth(t_game *game);
@@ -86,5 +93,16 @@ void			init_asset_map(t_game *game);
 void			init_asset_player(t_game *game);
 
 void			display_map(t_game *game);
+
+int				verif_direction(int keycode, t_game *game);
+int				get_change_direction(int keycode, t_game *game);
+int				move_loop(t_game *game);
+
+void			get_exit(t_game *game);
+
+void			exit_game(t_game *game);
+void			clean_game(t_game *game);
+
+void			get_nb_collectible(t_game *game);
 
 #endif

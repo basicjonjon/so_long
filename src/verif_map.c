@@ -6,49 +6,11 @@
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:48:10 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/07 13:42:10 by jle-doua         ###   ########.fr       */
+/*   Updated: 2024/10/14 12:53:10 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-int	verif_validity_map(t_game game)
-{
-	int	verif;
-
-	verif = 0;
-	if (game.map_x < 5 || game.map_y < 3)
-	{
-		printf("%sERROR : map is to small\n%s", RED, NC);
-		verif++;
-	}
-	if (verif_count_p_e_c(&game))
-	{
-		printf("%sERROR : no player, exit or collectible\n%s", RED, NC);
-		verif++;
-	}
-	if (verif_shape(game))
-	{
-		printf("%sERROR : map is not rectangular\n%s", RED, NC);
-		verif++;
-	}
-	if (verif_border(game))
-	{
-		printf("%sERROR : map border have problem\n%s", RED, NC);
-		verif++;
-	}
-	verif_finishable(&game, game.player.plyr_x, game.player.plyr_y);
-	if (game.verif.exit == 0 || game.verif.collectible != game.nb_collectible)
-	{
-		printf("%sERROR : map is not finishable\n%s", RED, NC);
-		verif++;
-	}
-	ft_free_bidimentionnal((void **)game.verif.map);
-	if (verif != 0)
-		return (1);
-	printf("%s[ MAP OK ]%s\n", GREEN, NC);
-	return (0);
-}
 
 int	verif_border(t_game game)
 {
@@ -77,6 +39,9 @@ int	verif_count_p_e_c(t_game *game)
 	int	x;
 
 	y = 0;
+	game->nb_player = 0;
+	game->nb_exit = 0;
+	game->nb_collectible = 0;
 	while (game->map[y])
 	{
 		x = 0;
