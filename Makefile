@@ -4,7 +4,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror 
 RM = rm -f
 
-FILES = main map game error verif_map display_info player utils asset display move exit collectible end
+FILES = main game error verif display_info player utils asset display direction end get destroy
 
 
 #tout les repertoire 

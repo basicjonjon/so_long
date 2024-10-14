@@ -6,7 +6,7 @@
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:24:50 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/14 13:14:44 by jle-doua         ###   ########.fr       */
+/*   Updated: 2024/10/14 16:16:46 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,41 +68,47 @@ typedef struct s_game
 }				t_game;
 
 int				init_game(t_game *game, char *file);
-
-int				get_map_size(t_game *game, char *file);
-int				get_map(t_game *game, char *file);
+void			init_game_value(t_game *game);
 
 void			display_info(t_game game);
 
-int				verif_validity_map(t_game game);
-int				verif_border(t_game game);
-int				verif_count_p_e_c(t_game *game);
-int				verif_shape(t_game game);
 int				verif_finishable(t_game *game, int x, int y);
+int				verif_count_p_e_c(t_game *game);
+int				verif_border(t_game game);
+int				verif_asset(t_game *game);
+int				verif_shape(t_game game);
 
-void			get_player_position(t_game *game);
-int				move_rigth(t_game *game);
-int				move_left(t_game *game);
-int				move_bottom(t_game *game);
-int				move_top(t_game *game);
+int				error_map(t_game game);
+int				error_asset(t_game *game);
 
-int				ft_tablen(char **tab);
+int				player_bottom(t_game *game);
+int				player_rigth(t_game *game);
+int				player_left(t_game *game);
+int				player_loop(t_game *game);
+int				player_top(t_game *game);
+
 char			**ft_bidimentionnal_char_cpy(char **tab);
+int				ft_tablen(char **tab);
 
-void			init_asset_map(t_game *game);
 void			init_asset_player(t_game *game);
+void			init_asset_map(t_game *game);
 
 void			display_map(t_game *game);
 
-int				verif_direction(int keycode, t_game *game);
-int				get_change_direction(int keycode, t_game *game);
-int				move_loop(t_game *game);
+int				direction_verification(int keycode, t_game *game);
+int				direction_change(int keycode, t_game *game);
 
+int				get_map_size(t_game *game, int fd);
+int				get_map(t_game *game, int fd);
+void			get_player_position(t_game *game);
+void			get_nb_collectible(t_game *game);
 void			get_exit(t_game *game);
 
-void			exit_game(t_game *game);
-void			clean_game(t_game *game);
+void			end_clean_game(t_game *game);
+void			end_game(t_game *game);
 
-void			get_nb_collectible(t_game *game);
-
+void			destroy_asset_animation(t_game *game);
+void			destroy_asset_player(t_game *game);
+void			destroy_asset_map(t_game *game);
+void			destroy_asset(t_game *game);
 #endif

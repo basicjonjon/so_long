@@ -1,25 +1,89 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 12:42:27 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/11 14:28:38 by jle-doua         ###   ########.fr       */
+/*   Created: 2024/10/14 15:23:08 by jle-doua          #+#    #+#             */
+/*   Updated: 2024/10/14 16:19:47 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	get_map_size(t_game *game, char *file)
+void	get_exit(t_game *game)
 {
-	int		fd;
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y <= game->map_y)
+	{
+		x = 0;
+		while (x <= game->map_x)
+		{
+			if (game->map[y][x] == 'E')
+			{
+				game->exit.x = x;
+				game->exit.y = y;
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
+void	get_player_position(t_game *game)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (game->map[y])
+	{
+		x = 0;
+		while (game->map[y][x])
+		{
+			if (game->map[y][x] == 'P')
+			{
+				game->player.x = x;
+				game->player.y = y;
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
+void	get_nb_collectible(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < game->map_y)
+	{
+		x = 0;
+		while (x < game->map_x)
+		{
+			if (game->map[y][x] == 'C')
+			{
+				game->nb_collectible++;
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
+int	get_map_size(t_game *game, int fd)
+{
 	char	*line;
 
 	game->map_x = 0;
 	game->map_y = 0;
-	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (1);
 	line = get_next_line(fd);
@@ -34,15 +98,16 @@ int	get_map_size(t_game *game, char *file)
 	return (0);
 }
 
-int	get_map(t_game *game, char *file)
+int	get_map(t_game *game, int fd)
 {
 	int	i;
-	int	fd;
 
 	i = 0;
-	get_map_size(game, file);
+	if (fd < 0)
+		return (1);
 	game->map = malloc(sizeof(char **) * (game->map_y + 1));
-	fd = open(file, O_RDONLY);
+	if (!game->map)
+		return (free(game->map), 1);
 	game->map[i] = get_next_line(fd);
 	while (game->map[i])
 	{

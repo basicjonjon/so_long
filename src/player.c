@@ -6,35 +6,41 @@
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 14:28:46 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/14 13:15:56 by jle-doua         ###   ########.fr       */
+/*   Updated: 2024/10/14 16:16:05 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	get_player_position(t_game *game)
+int	player_loop(t_game *game)
 {
-	int	y;
-	int	x;
+	static int	counter = 0;
+	int			speed_limit;
 
-	y = 0;
-	while (game->map[y])
-	{
-		x = 0;
-		while (game->map[y][x])
-		{
-			if (game->map[y][x] == 'P')
-			{
-				game->player.x = x;
-				game->player.y = y;
-			}
-			x++;
-		}
-		y++;
-	}
+	speed_limit = 28000;
+	if (counter == 14000)
+		mlx_put_image_to_window(game->mlx, game->win,
+			game->player.asset[game->player.rot_x][game->player.rot_y][0],
+			game->player.x * game->h, game->player.y * game->h);
+	if (counter < speed_limit)
+		return (counter++, 0);
+	counter = 0;
+	if (game->keypress == 100 || game->keypress == 65363)
+		player_rigth(game);
+	if (game->keypress == 97 || game->keypress == 65361)
+		player_left(game);
+	if (game->keypress == 119 || game->keypress == 65362)
+		player_top(game);
+	if (game->keypress == 115 || game->keypress == 65364)
+		player_bottom(game);
+	printf("\033[H\033[J");
+	printf("collected %i | collectible %i\n", game->collected,
+		game->nb_collectible);
+	end_game(game);
+	return (0);
 }
 
-int	move_rigth(t_game *game)
+int	player_rigth(t_game *game)
 {
 	if (game->player.x + 1 > game->map_x)
 		return (0);
@@ -62,7 +68,7 @@ int	move_rigth(t_game *game)
 	return (1);
 }
 
-int	move_left(t_game *game)
+int	player_left(t_game *game)
 {
 	if (game->player.x - 1 <= 0)
 		return (0);
@@ -90,7 +96,7 @@ int	move_left(t_game *game)
 	return (1);
 }
 
-int	move_bottom(t_game *game)
+int	player_bottom(t_game *game)
 {
 	if (game->player.y + 1 > game->map_y)
 		return (0);
@@ -117,7 +123,7 @@ int	move_bottom(t_game *game)
 	return (1);
 }
 
-int	move_top(t_game *game)
+int	player_top(t_game *game)
 {
 	if (game->player.y - 1 <= 0)
 		return (0);
