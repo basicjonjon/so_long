@@ -6,7 +6,7 @@
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:48:10 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/14 16:15:27 by jle-doua         ###   ########.fr       */
+/*   Updated: 2024/10/16 23:20:21 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,6 @@ int	verif_asset(t_game *game)
 		destroy_asset(game);
 		return (1);
 	}
-	printf("%s[ASSET OK]%s\n", GREEN, NC);
+	ft_printf("%s[ASSET OK]%s\n", GREEN, NC);
 	return (0);
 }

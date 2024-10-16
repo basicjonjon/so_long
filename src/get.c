@@ -6,7 +6,7 @@
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:23:08 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/14 16:19:47 by jle-doua         ###   ########.fr       */
+/*   Updated: 2024/10/16 22:21:22 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,27 +57,6 @@ void	get_player_position(t_game *game)
 	}
 }
 
-void	get_nb_collectible(t_game *game)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < game->map_y)
-	{
-		x = 0;
-		while (x < game->map_x)
-		{
-			if (game->map[y][x] == 'C')
-			{
-				game->nb_collectible++;
-			}
-			x++;
-		}
-		y++;
-	}
-}
-
 int	get_map_size(t_game *game, int fd)
 {
 	char	*line;
@@ -87,6 +66,8 @@ int	get_map_size(t_game *game, int fd)
 	if (fd == -1)
 		return (1);
 	line = get_next_line(fd);
+	if (!line)
+		return (ft_puterror("file empty"), 1);
 	game->map_x = ft_strlennojl(line);
 	while (line)
 	{
@@ -103,11 +84,11 @@ int	get_map(t_game *game, int fd)
 	int	i;
 
 	i = 0;
-	if (fd < 0)
+	if (fd == -1)
 		return (1);
 	game->map = malloc(sizeof(char **) * (game->map_y + 1));
 	if (!game->map)
-		return (free(game->map), 1);
+		return (1);
 	game->map[i] = get_next_line(fd);
 	while (game->map[i])
 	{

@@ -6,7 +6,7 @@
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:53:34 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/04 15:23:55 by jle-doua         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:56:33 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,7 @@
 
 void	display_info(t_game game)
 {
-	int	y;
-
-	y = 0;
-	printf("size :\n|  x : %i  |  y : %i  |\n", game.map_x, game.map_y);
-	printf("\nmap :\n");
-	while (y < game.map_y)
-	{
-		printf("%s", game.map[y]);
-		y++;
-	}
+	ft_printf("\033[H\033[J");
+	ft_printf("collectible : %i/%i\n", game.collected, game.nb_collectible);
+	ft_printf("mouvement : %i\n", game.move);
 }

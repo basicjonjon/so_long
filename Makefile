@@ -1,7 +1,7 @@
 NAME = so_long
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -g3 
 RM = rm -f
 
 FILES = main game error verif display_info player utils asset display direction end get destroy
@@ -56,8 +56,7 @@ fclean: clean
 	@echo "$(RED)========== [ OBJECT / EX DELETED ] ==========$(NC)"
 
 re: fclean all
-	@echo "\n$(BLUE)================= [ START ] =================$(NC)\n"
-	@./$(NAME) "./maps/map1.ber"
-	@echo "\n$(BLUE)================= [  END  ] =================$(NC)\n"
+	@echo "\n$(BLUE)================= [ OK ] =================$(NC)\n"
+
 
 .PHONY: all clean fclean re

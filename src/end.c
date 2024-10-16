@@ -6,11 +6,17 @@
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:07:37 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/14 16:14:45 by jle-doua         ###   ########.fr       */
+/*   Updated: 2024/10/16 23:28:22 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+int	end_click_cross(t_game *game)
+{
+	end_clean_game(game);
+	return (1);
+}
 
 void	end_game(t_game *game)
 {
@@ -29,5 +35,6 @@ void	end_clean_game(t_game *game)
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	ft_free_bidimentionnal((void **)game->map);
+	printf("exit");
 	exit(0);
 }
