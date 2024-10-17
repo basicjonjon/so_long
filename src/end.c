@@ -6,7 +6,7 @@
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:07:37 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/16 23:28:22 by jle-doua         ###   ########.fr       */
+/*   Updated: 2024/10/17 11:05:23 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ void	end_clean_game(t_game *game)
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	ft_free_bidimentionnal((void **)game->map);
-	printf("exit");
 	exit(0);
 }
