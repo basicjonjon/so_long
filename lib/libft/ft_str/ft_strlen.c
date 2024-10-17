@@ -6,7 +6,7 @@
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 10:17:29 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/04 13:13:41 by jle-doua         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:09:37 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ size_t	ft_strlennojl(const char *string)
 
 	i = 0;
 	count = 0;
+	if (!string)
+		return (0);
 	while (string[i])
 	{
 		if (string[i] != '\n')

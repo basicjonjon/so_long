@@ -6,7 +6,7 @@
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:24:50 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/16 21:41:45 by jle-doua         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:01:09 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ int				verif_border(t_game game);
 int				verif_asset(t_game *game);
 int				verif_shape(t_game game);
 
-int				error_map(t_game *game);
-int				error_asset(t_game *game);
 int				error_gameplay(t_game *game);
+int				error_asset(t_game *game);
+int				error_map(t_game *game);
 
 int				player_bottom(t_game *game);
 int				player_rigth(t_game *game);
@@ -90,22 +90,24 @@ int				player_loop(t_game *game);
 int				player_top(t_game *game);
 
 int				verif_extention_file(char *s, char *ext);
-char			**ft_bidimentionnal_char_cpy(char **tab);
+char			**ft_bidimentionnal_char_cpy(char **tab, int x_size,
+					int y_size);
+int				verif_unauthorized_letter(t_game *game);
 int				ft_tablen(char **tab);
 
 void			init_asset_player(t_game *game);
 void			init_asset_map(t_game *game);
 
-void			display_game(t_game *game);
 void			display_map(t_game *game, int x, int y);
 void			display_player(t_game *game);
+void			display_game(t_game *game);
 
 int				direction_verification(int keycode, t_game *game);
 int				direction_change(int keycode, t_game *game);
 
 int				get_map_size(t_game *game, int fd);
-int				get_map(t_game *game, int fd);
 void			get_player_position(t_game *game);
+int				get_map(t_game *game, int fd);
 void			get_exit(t_game *game);
 
 int				end_click_cross(t_game *game);

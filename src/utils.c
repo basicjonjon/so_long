@@ -6,7 +6,7 @@
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:26:46 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/17 11:06:18 by jle-doua         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:05:20 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,23 @@ int	ft_tablen(char **tab)
 	return (y);
 }
 
-char	**ft_bidimentionnal_char_cpy(char **tab)
+char	**ft_bidimentionnal_char_cpy(char **tab, int x_size, int y_size)
 {
 	char	**res;
-	int		y_size;
 	int		y;
-	int		x_size;
 	int		x;
 
-	y_size = ft_tablen(tab);
 	y = 0;
-	x_size = ft_strlen(tab[0]);
-	res = malloc(sizeof(char **) * (y_size + 1));
-	while (tab[y])
+	res = malloc(sizeof(char *) * (y_size + 1));
+	if (!res)
+		return (NULL);
+	while (y < y_size && tab[y])
 	{
 		x = 0;
 		res[y] = malloc(sizeof(char) * (x_size + 1));
-		while (tab[y][x])
+		if (!res[y])
+			return (ft_free_bidimentionnal((void **)res), NULL);
+		while (x < x_size && tab[y][x])
 		{
 			res[y][x] = tab[y][x];
 			x++;
@@ -66,6 +66,29 @@ int	verif_extention_file(char *s, char *ext)
 		if (s[s_size - i] != ext[ext_size - i])
 			return (1);
 		i++;
+	}
+	return (0);
+}
+
+int	verif_unauthorized_letter(t_game *game)
+{
+	int	y;
+	int	x;
+	int	check;
+
+	y = 0;
+	while (game->map[y])
+	{
+		x = 0;
+		while (game->map[y][x])
+		{
+			check = game->map[y][x];
+			if (check != '1' && check != '0' && check != 'P' && check != 'C'
+				&& check != 'E' && check != '\n')
+				return (1);
+			x++;
+		}
+		y++;
 	}
 	return (0);
 }

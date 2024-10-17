@@ -6,7 +6,7 @@
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:16:46 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/16 23:20:10 by jle-doua         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:27:45 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ int	error_map(t_game *game)
 		ft_puterror("map is not rectangular");
 	if (verif_border(*game))
 		ft_puterror("map border have problem");
+	if (verif_unauthorized_letter(game))
+		ft_puterror("ukown char in map");
 	if ((game->map_x < 5 || game->map_y < 3) || game->nb_player != 1
 		|| game->nb_exit != 1 || game->nb_collectible == 0 || verif_shape(*game)
-		|| verif_border(*game))
+		|| verif_border(*game) || verif_unauthorized_letter(game))
 		return (ft_free_bidimentionnal((void **)game->map), 1);
 	ft_printf("%s[ MAP OK ]%s\n", GREEN, NC);
 	return (0);

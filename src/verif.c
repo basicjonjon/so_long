@@ -6,7 +6,7 @@
 /*   By: jle-doua <jle-doua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:48:10 by jle-doua          #+#    #+#             */
-/*   Updated: 2024/10/16 23:20:21 by jle-doua         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:10:40 by jle-doua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	verif_shape(t_game game)
 
 	y = 1;
 	ref = ft_strlennojl(game.map[0]);
+	if (!ref)
+		return (1);
 	while (y < game.map_y)
 	{
 		if (ft_strlennojl(game.map[y]) != ref)
